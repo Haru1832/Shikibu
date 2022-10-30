@@ -1,0 +1,28 @@
+command = CS.Command.CommandExecutor
+util = require 'xlua.util'
+cs_coroutine = (require 'cs_coroutine')
+
+function text(text)
+    command.ShowText(text)
+    waitClick()
+end
+
+function routine()
+    local innerCoroutine1 = csStartCoroutine(command.wait(1))
+end
+
+function wait(time)
+    coroutine.yield(command.Wait(time))
+end
+
+function display(name,x,y)
+    command.Display(name,x,y)
+end
+
+function waitClick()
+    coroutine.yield(command.WaitClicked())
+end
+
+function sample()
+
+end
