@@ -4,7 +4,7 @@ cs_coroutine = (require 'cs_coroutine')
 
 function text(text)
     command.ShowText(text)
-    waitClick()
+    waitTextCompleted()
 end
 
 function routine()
@@ -21,6 +21,18 @@ end
 
 function waitClick()
     coroutine.yield(command.WaitClicked())
+end
+
+function startStory()
+    command.Start()
+end
+
+function endStory()
+    command.End()
+end
+
+function waitTextCompleted()
+    coroutine.yield(command.WaitTextCompleted())
 end
 
 function sample()

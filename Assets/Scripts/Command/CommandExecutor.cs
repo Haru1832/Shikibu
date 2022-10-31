@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using Command.CommandImpl;
 using UnityEngine;
 using XLua;
 
@@ -81,6 +82,28 @@ namespace Command
             var command = (DisplayCharacterCommand)_commandList.GetCommandOfType<DisplayCharacterCommand>();
             
             command.Display(name, x, y);
+        }
+
+        public static void Start()
+        {
+            var command = (StartCommand)_commandList.GetCommandOfType<StartCommand>();
+            
+            command.Start();
+        }
+
+        public static void End()
+        {
+            var command = (EndCommand)_commandList.GetCommandOfType<EndCommand>();
+
+            command.End();
+        }
+
+        public static IEnumerator WaitTextCompleted()
+        {
+            var command = (WaitTextCompletedCommand)_commandList.GetCommandOfType<WaitTextCompletedCommand>();
+
+            yield return command.WaitTextCompleted();
+            Debug.Log("WaitEnd");
         }
     }
 }

@@ -1,5 +1,9 @@
 cs_coroutine.start(function()
+
+startStory()
 --ここから
+
+
 
     display("Philia",-100,50)
     
@@ -7,7 +11,7 @@ cs_coroutine.start(function()
     
    
 
-    text("昨晩はお楽しみでしたね。昨晩はお楽しみでしたね。昨晩はお楽しみでしたね。昨晩はお楽しみでしたね。")
+    text("dwadwawadawdawdwawadawdwaawdawdawdawdawdawdawdwadawwawadawdwadawdwadwaawdadadwadadwaawdawdawdawdwadawawddwawadwad")
 
     text("昨晩はお楽しみでしたね。昨晩はお楽しみでしたね。昨晩はお楽しみでしたね。昨晩はお楽しみでしたね。昨晩はお楽しみでしたね。昨晩はお楽しみでしたね。")
     
@@ -16,4 +20,6 @@ cs_coroutine.start(function()
     
 -- ここまで
     
+endStory()
+
 end)

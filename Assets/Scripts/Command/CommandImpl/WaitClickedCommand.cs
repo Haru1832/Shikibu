@@ -21,5 +21,6 @@ public class WaitClickedCommand : ICommand
         button.onClick.AddListener(() => isOk = true);
         
         yield return new WaitUntil(() => isOk);
+
     }
 }
