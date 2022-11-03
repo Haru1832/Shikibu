@@ -6,10 +6,10 @@ using UnityEngine;
 using UnityEngine.UIElements;
 using Image = UnityEngine.UI.Image;
 
-public class CharacterImageView : MonoBehaviour
+public class ItemImageView : MonoBehaviour
 {
-    private String characterName;
-    public String CharacterName => characterName;
+    private String itemName;
+    public String ItemName => itemName;
 
     [SerializeField] private Image image;
 
@@ -28,7 +28,7 @@ public class CharacterImageView : MonoBehaviour
     
     public void SetName(String name)
     {
-        characterName = name;
+        itemName = name;
     }
 
     public void AnimationActive()
@@ -37,11 +37,6 @@ public class CharacterImageView : MonoBehaviour
         imageColor.a = 0;
         image.color = imageColor;
         image.DOFade(1, durationTime);
-    }
-
-    public void SetExpression()
-    {
-        //TODO:キャラに合わせた表情差分の設定
     }
 
     public void Move(float x, float y)

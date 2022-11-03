@@ -13,12 +13,10 @@ namespace Command.CommandImpl
         
         private TweenManager _tweenManager;
         private bool isWait;
-        private MonoBehaviour _behaviour;
         private Button button;
         public override void Setup(UIObjectManager objectManager)
         {
             button = objectManager.ClickButton;
-            _behaviour = objectManager;
             _tweenManager = objectManager.GetTweenManager();
         }
 

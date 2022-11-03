@@ -10,7 +10,8 @@ using ICommand = Command.ICommand;
 
 public class ShowTextCommand : ICommand
 {
-    private Text _text;
+    private Text _mainText;
+    private Text _nameText;
     private Tween _tween;
 
     private TweenManager _tweenManager;
@@ -20,19 +21,24 @@ public class ShowTextCommand : ICommand
     
     public override void Setup(UIObjectManager objectManager)
     {
-        _text = objectManager.MainText;
+        _mainText = objectManager.MainText;
+        _nameText = objectManager.NameText;
         _tweenManager = objectManager.GetTweenManager();
     }
     
-    public void ShowText(String _talkText)
+    public void ShowText(String _talkText, String characterName = null)
     {
+        if (characterName != null)
+        {
+            _nameText.text = characterName;
+        }
         _tweenManager.DisposeTextTween();
-        _text.text = "";
+        _mainText.text = "";
     
         float textLength = _talkText.Length;
         
     
-        _tween = _text.DOText(_talkText, textLength / textSpeed).SetEase(Ease.Linear).OnComplete((() => _tweenManager.DisposeTextTween()));
+        _tween = _mainText.DOText(_talkText, textLength / textSpeed).SetEase(Ease.Linear).OnComplete((() => _tweenManager.DisposeTextTween()));
         _tweenManager.RegisterTextTween(_tween);
     }
 

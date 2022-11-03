@@ -11,6 +11,10 @@
         public void Start()
         {
             _uiObjectManager.ResetCharacterImageList();
+            
+            _uiObjectManager.GetTweenManager().DisposeTextTween();
+            _uiObjectManager.MainText.text = "";
+            _uiObjectManager.NameText.text = "";
         }
     }
 }

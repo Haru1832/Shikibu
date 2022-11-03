@@ -4,18 +4,29 @@ startStory()
 --ここから
 
 
+    changeBGAlpha("park")
 
-    display("Philia",-100,50)
+    displayCharacter("pottilyama",-200,0)
     
-    display("purin",400,50)
+    displayCharacter("purin",200,0)
     
-   
+    wait(0.3)
 
-    text("dwadwawadawdawdwawadawdwaawdawdawdawdawdawdawdwadawwawadawdwadawdwadwaawdadadwadadwaawdawdawdawdwadawawddwawadwad")
+    text("dwadwawadawdawdwawadawdwaawdawdawdawdawdawdawdwadawwawadawdwadawdwadwaawdadadwadadwaawdawdawdawdwadawawddwawadwad","プリン")
 
-    text("昨晩はお楽しみでしたね。昨晩はお楽しみでしたね。昨晩はお楽しみでしたね。昨晩はお楽しみでしたね。昨晩はお楽しみでしたね。昨晩はお楽しみでしたね。")
+    text("昨晩はお楽しみでしたね。昨晩はお楽しみでしたね。昨晩はお楽しみでしたね。昨晩はお楽しみでしたね。昨晩はお楽しみでしたね。昨晩はお楽しみでしたね。","ポッチャマ")
     
-    text("ここはパルミドの街だぜ。")
+    Move("purin", -300, 0)
+    
+    changeBGAlpha("yuyake")
+    
+    displayItem("Monsterball",0, 0)
+    
+    text("ここはパルミドの街だぜ。","プリン")
+    
+    deleteItem("Monsterball")
+    
+
     
     
 -- ここまで

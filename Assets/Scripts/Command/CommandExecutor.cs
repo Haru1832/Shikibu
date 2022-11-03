@@ -56,14 +56,14 @@ namespace Command
         //     Action<ICommand> command = commandList[a.GetType()];
         // }
 
-        public static void ShowText(String text)
+        public static void ShowText(String text,String characterName = null)
         {
             var command = (ShowTextCommand)_commandList.GetCommandOfType<ShowTextCommand>();
             
-            command.ShowText(text);
+            command.ShowText(text, characterName);
         }
 
-        public static IEnumerator Wait(int time)
+        public static IEnumerator Wait(float time)
         {
             var command = (WaitCommand)_commandList.GetCommandOfType<WaitCommand>();
 
@@ -77,11 +77,25 @@ namespace Command
             yield return command.Wait();
         }
 
-        public static void Display(String name, float x, float y)
+        public static void DisplayCharacter(String name, float x, float y)
         {
             var command = (DisplayCharacterCommand)_commandList.GetCommandOfType<DisplayCharacterCommand>();
             
             command.Display(name, x, y);
+        }
+        
+        public static void DisplayItem(String name, float x, float y)
+        {
+            var command = (DisplayItemImageCommand)_commandList.GetCommandOfType<DisplayItemImageCommand>();
+            
+            command.Display(name, x, y);
+        }
+
+        public static void DeleteItem(String itemName)
+        {
+            var command = (DisplayItemImageCommand)_commandList.GetCommandOfType<DisplayItemImageCommand>();
+            
+            command.DeleteItemImage(itemName);
         }
 
         public static void Start()
@@ -104,6 +118,27 @@ namespace Command
 
             yield return command.WaitTextCompleted();
             Debug.Log("WaitEnd");
+        }
+
+        public static void Move(String characterName, float x, float y)
+        {
+            var command = (MoveCommand)_commandList.GetCommandOfType<MoveCommand>();
+
+            command.Move(characterName, x, y);
+        }
+
+        public static void ChangeBackGroundAlpha(String backGroundName)
+        {
+            var command = (BackGroundCommand)_commandList.GetCommandOfType<BackGroundCommand>();
+            
+            command.ChangeBackGroundAlpha(backGroundName);
+        }
+
+        public static void DeleteCharacterImage(String characterName)
+        {
+            var command = (DisplayCharacterCommand)_commandList.GetCommandOfType<DisplayCharacterCommand>();
+            
+            command.DeleteCharacterImage(characterName);
         }
     }
 }

@@ -11,7 +11,7 @@
         public void End()
         {
             _uiObjectManager.MainText.text = "";
-            
+            _uiObjectManager.NameText.text = "";
         }
     }
 }

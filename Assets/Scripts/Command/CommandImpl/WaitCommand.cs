@@ -13,7 +13,7 @@ public class WaitCommand : ICommand
     }
 
 
-    public IEnumerator Wait(int time)
+    public IEnumerator Wait(float time)
     {
         yield return new WaitForSeconds(time);
     }
