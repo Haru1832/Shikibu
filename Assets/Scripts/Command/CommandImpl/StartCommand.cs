@@ -11,6 +11,7 @@
         public void Start()
         {
             _uiObjectManager.ResetCharacterImageList();
+            _uiObjectManager.ResetItemImageList();
             
             _uiObjectManager.GetTweenManager().DisposeTextTween();
             _uiObjectManager.MainText.text = "";

@@ -43,6 +43,9 @@ startStory()
     
     
     
+
+    
+    
 -- ここまで
     
 endStory()

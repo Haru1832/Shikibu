@@ -83,6 +83,15 @@ public class UIObjectManager : MonoBehaviour
         });
         _characterImageList.Clear();
     }
+    
+    public void ResetItemImageList()
+    {
+        _itemImageList.ForEach(x =>
+        {
+            Destroy(x.gameObject);
+        });
+        _itemImageList.Clear();
+    }
 
     public TweenManager GetTweenManager()
     {

@@ -59,3 +59,4 @@ end
 function deleteCharacter(characterName)
     command.DeleteCharacterImage(characterName)
 end
+TestTestTest
