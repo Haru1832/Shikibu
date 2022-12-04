@@ -24,7 +24,7 @@ function displayItem(name, x, y)
 end
 
 function deleteItem(name)
-    command.DeleteItem(name)
+    command.DeleteItem(name)Scripts
 end
 
 function waitClick()
@@ -59,4 +59,3 @@ end
 function deleteCharacter(characterName)
     command.DeleteCharacterImage(characterName)
 end
-TestTestTest

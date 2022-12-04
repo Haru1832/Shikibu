@@ -5,6 +5,7 @@ using System.Linq;
 using Command;
 using UnityEngine;
 using UnityEngine.UI;
+using XLua;
 
 public class DisplayCharacterCommand : ICommand
 {
@@ -42,7 +43,7 @@ public class DisplayCharacterCommand : ICommand
         
         _UIObjectManager.AddCharacter(prefab);
     }
-
+    
     public void DeleteCharacterImage(String characterName)
     {
         _UIObjectManager.DeleteCharacterImage(characterName);
