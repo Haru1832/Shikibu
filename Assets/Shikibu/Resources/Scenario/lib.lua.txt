@@ -24,7 +24,7 @@ function displayItem(name, x, y)
 end
 
 function deleteItem(name)
-    command.DeleteItem(name)Scripts
+    command.DeleteItem(name)
 end
 
 function waitClick()
