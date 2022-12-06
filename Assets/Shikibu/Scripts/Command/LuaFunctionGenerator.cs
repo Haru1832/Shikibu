@@ -14,17 +14,17 @@ public class LuaFunctionGenerator : MonoBehaviour
     
     private static string luaPath = "Assets/Shikibu/Resources/Scenario/CustomLib.lua.txt";
 
-    private static string executorPath = "Assets/Shikibu/Scripts/Command/CommandExecutor";
+    private static string executorPath = "Assets/Shikibu/Scripts/Command/CommandExecutor.cs";
 
     private static string textBasePath = "Assets/Shikibu/Scripts/Command/TextBase";
     
-    private static string executorBasePath = textBasePath + "/CommandExecutorBase";
+    private static string executorBasePath = textBasePath + "/CommandExecutorBase.cs";
     
     private static string luaBasePath = textBasePath + "/BaseCustomLib.lua.txt";
     
     private static string tmpLuaBasePath = textBasePath + "/TmpLuaCommand.lua.txt";
 
-    private static string tmpExecutorPath = textBasePath + "/TmpCommandExecutor";
+    private static string tmpExecutorPath = textBasePath + "/TmpCommandExecutor.cs";
 
     private static string tab = "    ";
 
@@ -337,28 +337,12 @@ public class LuaFunctionGenerator : MonoBehaviour
                 writer.WriteLine(str);
             }
         }
-        
-        File.Copy(tmpExecutorPath, executorPath);
 
     }
 
 
     public static void WriteExecutorMethod(List<string> writeStr)
     {
-        FileInfo baseFile = new FileInfo(executorPath);
-
-        int value = CommandExecutor.EditLineNum;
-        string baseString;
-        
-        using (StreamReader reader = baseFile.OpenText())
-        {
-            baseString = reader.ReadToEnd();
-        }
-        
-        FileInfo targetFile = new FileInfo(executorPath);
-
-
-        using (StreamReader reader = targetFile.OpenText())
         using ( StreamWriter writer = new StreamWriter(tmpExecutorPath, false))
         {
             foreach (var str in writeStr)
@@ -367,6 +351,8 @@ public class LuaFunctionGenerator : MonoBehaviour
                 
             }
         }
+        
+        File.Copy(tmpExecutorPath, executorPath, true);
         
     }
 }
