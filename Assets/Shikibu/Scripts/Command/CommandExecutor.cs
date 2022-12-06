@@ -100,6 +100,6 @@ namespace Command
             command.DeleteCharacterImage(characterName);
         }
 
-        public static int EditLineNum = 103;
+        public static int EditLineNum = 18;
     }
 }

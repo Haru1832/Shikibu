@@ -12,6 +12,7 @@ namespace Command.CommandImpl
             _characterImageViewList = objectManager.CharacterImageViewList;
         }
 
+        [ShikibuMethod]
         public void Move(String characterName, float x, float y)
         {
             var characterImageView = _characterImageViewList.FirstOrDefault(x=>x.CharacterName == characterName);

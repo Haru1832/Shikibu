@@ -1,0 +1,20 @@
+using System;
+using System.Collections;
+using Command.CommandImpl;
+using UnityEngine;
+using XLua;
+
+namespace Command
+{
+    public class CommandExecutor
+    {
+        private static AdvCommandList _commandList;
+
+        public static void Initialize(AdvCommandList commandList)
+        {
+            _commandList = commandList;
+        }
+        
+        public static int EditLineNum = 18;
+    }
+}

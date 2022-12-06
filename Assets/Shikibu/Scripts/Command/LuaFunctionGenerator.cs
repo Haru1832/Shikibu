@@ -5,7 +5,6 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using Command;
-using Shikibu.Scripts.Command.TextBase;
 using UnityEngine;
 
 public class LuaFunctionGenerator : MonoBehaviour
@@ -18,7 +17,7 @@ public class LuaFunctionGenerator : MonoBehaviour
 
     private static string textBasePath = "Assets/Shikibu/Scripts/Command/TextBase";
     
-    private static string executorBasePath = textBasePath + "/CommandExecutorBase.cs";
+    private static string executorBasePath = textBasePath + "/CommandExecutorBase.txt";
     
     private static string luaBasePath = textBasePath + "/BaseCustomLib.lua.txt";
     
@@ -128,37 +127,32 @@ public class LuaFunctionGenerator : MonoBehaviour
 
         int value = CommandExecutor.EditLineNum;
 
-        using (var fileStream = new FileStream(tmpExecutorPath, FileMode.Open))
-        {
-            fileStream.SetLength(0);
-        }
-        
         int currentline = 1;
         StringBuilder result = new StringBuilder();
         
         using (StreamReader reader = baseFile.OpenText())
         {
-            if (currentline == value)
+            string currentText;
+            
+            while ((currentText = reader.ReadLine()) != null)
             {
-                var methodStrings = getMethodString();
-                StringReader stringReader = new StringReader(methodStrings);
-                
-                //改行の数だけ現在の行数を足す
-                while (stringReader.ReadLine() != null)
+                if (currentline == value)
                 {
-                    currentline++;
-                }
-                result.Append(methodStrings);
-
-                result.Append("\n");
-                currentline++;
+                    var methodStrings = getMethodString();
+                    StringReader stringReader = new StringReader(methodStrings);
                 
-                result.Append($"public static int EditLineNum = {currentline};\n");
-                currentline++;
+                    //改行の数だけ現在の行数を足す
+                    while (stringReader.ReadLine() != null)
+                    {
+                        currentline++;
+                    }
+                    result.AppendLine(methodStrings);
+                }
+            
+                result.AppendLine(currentText);
+                currentline ++;
             }
             
-            result.Append(reader.ReadLine());
-            currentline ++;
         }
 
         List<string> resultList = new List<string>();
@@ -211,9 +205,10 @@ public class LuaFunctionGenerator : MonoBehaviour
                                 attribute = null;
                                 break;
                         }
-
+                        
+                        
                         string methodName = shikibuMethod.Name ?? method.Name;
-                        string methodType = method.GetType().ToString();
+                        string methodType = type.ToString();
 
                         string funcStr = $"[{attribute}]\n" +
                                          $"public static {method.ReturnType} {methodName}({GetExecutorArgument(method)})\n" +
@@ -229,99 +224,6 @@ public class LuaFunctionGenerator : MonoBehaviour
 
             return stringBuilder.ToString();
         }
-        
-        var list = System.Reflection.Assembly.GetAssembly(typeof(ICommand))
-            .GetTypes()
-            .Where(x => x.IsSubclassOf(typeof(ICommand)) && !x.IsAbstract)
-            .ToArray();
-        
-        foreach (var type in list)
-        {
-            var commandImpl = System.Activator.CreateInstance(type) as ICommand;
-            var commandMethods = commandImpl?.GetType().GetMethods();
-
-            foreach (var method in commandMethods)
-            {
-                ShikibuMethod shikibuMethod = method.GetCustomAttribute<ShikibuMethod>();
-
-                if (shikibuMethod != null)
-                {
-                    string attribute;
-                    
-                    switch (shikibuMethod.Optional)
-                    {
-                        case ShikibuEnum.UseLuaCallCsSharp :
-                            attribute = "LuaCallCSharp";
-                            break;
-                        case ShikibuEnum.ReflectionUse :
-                            attribute = "ReflectionUse";
-                            break;
-                        default:
-                            attribute = null;
-                    }
-
-                    string methodName = shikibuMethod.Name ?? method.Name;
-                    string methodType = method.GetType().ToString();
-
-                    string funcStr = $"[{shikibuMethod.Optional}]\n" +
-                                     $"public static {method.ReturnType} {methodName}({GetExecutorArgument(method)})\n" +
-                                     "{\n" +
-                                     $"{tab}{methodType} command = ({methodType})_commandList.GetCommandOfType<{methodType}>();\n" +
-                                     $"{tab}command.{method.Name}({GetLuaArgument(method)});" +
-                                     "}\n";
-                    
-                    
-                }
-            }
-        }
-
-        FileInfo info = new FileInfo(luaPath);
-        
-        BindingFlags flag = BindingFlags.Public |BindingFlags.Static;
-        
-        MethodInfo[] methods = typeof(CommandExecutor).GetMethods(flag);
-        
-        List<string> methodNameList = new List<string>();
-        
-        using (StreamReader streamReader = info.OpenText())
-        {
-            var libraryCurrentStr = streamReader.ReadToEnd();
-            foreach (var method in methods)
-            {
-                if (libraryCurrentStr.Contains(method.Name))
-                {
-                    continue;
-                }
-        
-                string argumentName = GetLuaArgument(method);
-        
-                string funcStr = null;
-            
-                if (method.ReturnType == typeof(IEnumerator))
-                {
-                    //入力形式
-                    // function methodName(arg)
-                    //     coroutine.yield(command.methodName(arg))
-                    // end
-                    funcStr = $"function {method.Name}({argumentName})\n" +
-                              $"{tab}coroutine.yield(command.{method.Name}({argumentName}))\n" +
-                              "end\n";
-                }
-                else
-                {
-                    //入力形式
-                    // function methodName(arg)
-                    //     command.methodName(arg)
-                    // end
-                    funcStr = $"function {method.Name}({argumentName})\n" +
-                              $"{tab}command.{method.Name}({argumentName})\n" +
-                              "end\n";
-                }
-                methodNameList.Add(funcStr);
-            }
-        }
-        
-        return methodNameList;
     }
     
     public static void WriteLuaMethod(List<string> writeStr)
@@ -343,12 +245,16 @@ public class LuaFunctionGenerator : MonoBehaviour
 
     public static void WriteExecutorMethod(List<string> writeStr)
     {
+        using (var fileStream = new FileStream(tmpExecutorPath, FileMode.Open))
+        {
+            fileStream.SetLength(0);
+        }
+        
         using ( StreamWriter writer = new StreamWriter(tmpExecutorPath, false))
         {
             foreach (var str in writeStr)
             {
                 writer.WriteLine(str);
-                
             }
         }
         

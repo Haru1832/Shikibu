@@ -8,6 +8,7 @@
             _uiObjectManager = objectManager;
         }
 
+        [ShikibuMethod]
         public void Start()
         {
             _uiObjectManager.ResetCharacterImageList();
