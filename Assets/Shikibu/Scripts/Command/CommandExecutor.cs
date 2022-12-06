@@ -70,7 +70,7 @@ namespace Command
 
             command.End();
         }
-
+        
         public static IEnumerator WaitTextCompleted()
         {
             var command = (WaitTextCompletedCommand)_commandList.GetCommandOfType<WaitTextCompletedCommand>();
@@ -100,6 +100,6 @@ namespace Command
             command.DeleteCharacterImage(characterName);
         }
 
-        public static int EditLineNum = 104;
+        public static int EditLineNum = 103;
     }
 }
