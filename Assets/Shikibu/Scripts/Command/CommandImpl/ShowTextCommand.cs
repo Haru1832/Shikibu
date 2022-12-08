@@ -25,6 +25,7 @@ public class ShowTextCommand : BaseShikibuCommand
         _tweenManager = objectManager.GetTweenManager();
     }
     
+    [ShikibuMethod]
     public void ShowText(String _talkText, String characterName = null)
     {
         if (characterName != null)

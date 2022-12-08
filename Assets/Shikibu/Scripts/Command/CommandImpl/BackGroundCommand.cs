@@ -11,6 +11,7 @@ namespace Command.CommandImpl
             _backGroundManager = objectManager.BackGroundManager;
         }
 
+        [ShikibuMethod]
         public void ChangeBackGroundAlpha(String backGroundName)
         {
             _backGroundManager.ChangeBackGroundOfAlpha(backGroundName);

@@ -10,6 +10,7 @@ namespace Command.CommandImpl
             _uiObjectManager = objectManager;
         }
 
+        [ShikibuMethod]
         public void ChangeCharacterImage(String characterName, String changeCharacterName)
         {
             

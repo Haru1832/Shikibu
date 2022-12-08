@@ -14,6 +14,7 @@ public class WaitClickedCommand : BaseShikibuCommand
         button = objectManager.ClickButton;
     }
 
+    [ShikibuMethod]
     public IEnumerator Wait()
     {
         var isOk = false;

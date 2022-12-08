@@ -20,6 +20,7 @@ namespace Command.CommandImpl
             _tweenManager = objectManager.GetTweenManager();
         }
 
+        [ShikibuMethod]
         public IEnumerator WaitTextCompleted()
         {
             

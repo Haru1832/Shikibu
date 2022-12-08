@@ -8,6 +8,8 @@
             _uiObjectManager = objectManager;
         }
 
+        
+        [ShikibuMethod]
         public void End()
         {
             _uiObjectManager.MainText.text = "";
