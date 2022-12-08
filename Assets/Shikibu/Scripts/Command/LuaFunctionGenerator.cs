@@ -28,6 +28,8 @@ public class LuaFunctionGenerator : MonoBehaviour
 
     private static string tab = "    ";
 
+    private static int EditLineNum = 18;
+    
 
     public void GenerateFunction()
     {
@@ -128,7 +130,7 @@ public class LuaFunctionGenerator : MonoBehaviour
     {
         FileInfo baseFile = new FileInfo(executorBasePath);
 
-        int value = CommandExecutor.EditLineNum;
+        int value = EditLineNum;
 
         int currentline = 1;
         StringBuilder result = new StringBuilder();
