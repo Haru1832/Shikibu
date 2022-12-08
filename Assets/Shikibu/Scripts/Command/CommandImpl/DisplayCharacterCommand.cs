@@ -32,7 +32,7 @@ public class DisplayCharacterCommand : BaseShikibuCommand
         characterImagePrefab = Resources.Load<CharacterImageView>("Prefab/CharacterImage");
     }
 
-
+    [ShikibuMethod]
     public void Display(String name,float x,float y)
     {
         CharacterImageView prefab = GameObject.Instantiate(characterImagePrefab, rootObject);
@@ -44,6 +44,7 @@ public class DisplayCharacterCommand : BaseShikibuCommand
         _UIObjectManager.AddCharacter(prefab);
     }
     
+    [ShikibuMethod]
     public void DeleteCharacterImage(String characterName)
     {
         _UIObjectManager.DeleteCharacterImage(characterName);
