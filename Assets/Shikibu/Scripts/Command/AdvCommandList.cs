@@ -7,11 +7,11 @@ namespace Command
 {
     public class AdvCommandList
     {
-        private List<ICommand> _commandList;
+        private List<BaseShikibuCommand> _commandList;
 
         public AdvCommandList(UIObjectManager objectManager)
         {
-            _commandList = new List<ICommand>();
+            _commandList = new List<BaseShikibuCommand>();
             Init();
             
             _commandList.ForEach(x=> x.Setup(objectManager));
@@ -22,20 +22,20 @@ namespace Command
         {
             _commandList.Clear();
             
-            var list = System.Reflection.Assembly.GetAssembly(typeof(ICommand))
+            var list = System.Reflection.Assembly.GetAssembly(typeof(BaseShikibuCommand))
                 .GetTypes()
-                .Where(x => x.IsSubclassOf(typeof(ICommand)) && !x.IsAbstract)
+                .Where(x => x.IsSubclassOf(typeof(BaseShikibuCommand)) && !x.IsAbstract)
                 .ToArray();
             
             foreach (var type in list)
             {
-                var command = System.Activator.CreateInstance(type) as ICommand;
+                var command = System.Activator.CreateInstance(type) as BaseShikibuCommand;
                 _commandList.Add(command);
             }
         }
 
 
-        public ICommand GetCommandOfType<T>()
+        public BaseShikibuCommand GetCommandOfType<T>()
         {
             return _commandList.Find(x => x.GetType() == typeof(T) );
         }

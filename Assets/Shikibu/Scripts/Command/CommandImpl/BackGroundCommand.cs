@@ -3,7 +3,7 @@ using Command.Manager;
 
 namespace Command.CommandImpl
 {
-    public class BackGroundCommand : ICommand
+    public class BackGroundCommand : BaseShikibuCommand
     {
         private BackGroundManager _backGroundManager;
         public override void Setup(UIObjectManager objectManager)

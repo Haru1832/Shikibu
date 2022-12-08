@@ -6,9 +6,8 @@ using Command.Components;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
-using ICommand = Command.ICommand;
 
-public class ShowTextCommand : ICommand
+public class ShowTextCommand : BaseShikibuCommand
 {
     private Text _mainText;
     private Text _nameText;

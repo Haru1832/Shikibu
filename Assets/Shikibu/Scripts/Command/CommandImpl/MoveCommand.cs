@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace Command.CommandImpl
 {
-    public class MoveCommand : ICommand
+    public class MoveCommand : BaseShikibuCommand
     {
         private List<CharacterImageView> _characterImageViewList;
         public override void Setup(UIObjectManager objectManager)

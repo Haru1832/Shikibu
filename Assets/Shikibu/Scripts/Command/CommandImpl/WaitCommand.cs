@@ -4,9 +4,8 @@ using System.Collections.Generic;
 using Command;
 using UnityEngine;
 using UnityEngine.UI;
-using ICommand = Command.ICommand;
 
-public class WaitCommand : ICommand
+public class WaitCommand : BaseShikibuCommand
 {
     public override void Setup(UIObjectManager objectManager)
     {

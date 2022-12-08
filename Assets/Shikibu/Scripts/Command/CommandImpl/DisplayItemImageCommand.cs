@@ -6,7 +6,7 @@ using Command;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class DisplayItemImageCommand : ICommand
+public class DisplayItemImageCommand : BaseShikibuCommand
 {
     private Image image;
 

@@ -176,14 +176,14 @@ public class LuaFunctionGenerator : MonoBehaviour
 
             stringBuilder.Append("\n");
 
-            var list = System.Reflection.Assembly.GetAssembly(typeof(ICommand))
+            var list = System.Reflection.Assembly.GetAssembly(typeof(BaseShikibuCommand))
                 .GetTypes()
-                .Where(x => x.IsSubclassOf(typeof(ICommand)) && !x.IsAbstract)
+                .Where(x => x.IsSubclassOf(typeof(BaseShikibuCommand)) && !x.IsAbstract)
                 .ToArray();
         
             foreach (var type in list)
             {
-                var commandImpl = System.Activator.CreateInstance(type) as ICommand;
+                var commandImpl = System.Activator.CreateInstance(type) as BaseShikibuCommand;
                 var commandMethods = commandImpl?.GetType().GetMethods();
 
                 foreach (var method in commandMethods)

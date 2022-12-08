@@ -5,7 +5,7 @@ using UniRx;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class WaitClickedCommand : ICommand
+public class WaitClickedCommand : BaseShikibuCommand
 { 
     private Button button;
 

@@ -2,7 +2,7 @@
 
 namespace Command.CommandImpl
 {
-    public class ChangeCharacterImageCommand : ICommand
+    public class ChangeCharacterImageCommand : BaseShikibuCommand
     {
         private UIObjectManager _uiObjectManager;
         public override void Setup(UIObjectManager objectManager)

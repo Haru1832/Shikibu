@@ -8,7 +8,7 @@ using Task = System.Threading.Tasks.Task;
 
 namespace Command.CommandImpl
 {
-    public class WaitTextCompletedCommand : ICommand
+    public class WaitTextCompletedCommand : BaseShikibuCommand
     {
         
         private TweenManager _tweenManager;

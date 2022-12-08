@@ -1,6 +1,6 @@
 ﻿namespace Command.CommandImpl
 {
-    public class StartCommand : ICommand
+    public class StartCommand : BaseShikibuCommand
     {
         private UIObjectManager _uiObjectManager;
         public override void Setup(UIObjectManager objectManager)

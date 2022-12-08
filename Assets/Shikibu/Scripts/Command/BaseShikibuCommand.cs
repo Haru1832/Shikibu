@@ -8,7 +8,7 @@ namespace Command
     /// MEMO : interfaceで定義していたがAdvCommandList内でこのクラスのサブクラスをリフレクションでインスタンスを生成している部分が
     /// interfaceだと機能しなかったので変更
     /// </summary>
-    public abstract class ICommand
+    public abstract class BaseShikibuCommand
     {
         public abstract void Setup(UIObjectManager objectManager);
     }

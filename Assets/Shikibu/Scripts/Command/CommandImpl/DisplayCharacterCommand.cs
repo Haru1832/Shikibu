@@ -7,7 +7,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using XLua;
 
-public class DisplayCharacterCommand : ICommand
+public class DisplayCharacterCommand : BaseShikibuCommand
 {
     private Image image;
 
