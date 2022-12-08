@@ -26,7 +26,7 @@ public class DisplayItemImageCommand : BaseShikibuCommand
         _itemImageViewList = objectManager.ItemImageViewList;
     }
 
-    [ShikibuMethod]
+    [ShikibuMethod("DisplayItem")]
     public void Display(String name,float x,float y)
     {
         ItemImageView prefab = GameObject.Instantiate(characterImagePrefab, rootObject);

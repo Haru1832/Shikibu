@@ -32,7 +32,7 @@ public class DisplayCharacterCommand : BaseShikibuCommand
         characterImagePrefab = Resources.Load<CharacterImageView>("Prefab/CharacterImage");
     }
 
-    [ShikibuMethod]
+    [ShikibuMethod("DisplayCharacter")]
     public void Display(String name,float x,float y)
     {
         CharacterImageView prefab = GameObject.Instantiate(characterImagePrefab, rootObject);

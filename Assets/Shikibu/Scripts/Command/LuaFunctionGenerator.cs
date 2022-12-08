@@ -31,9 +31,11 @@ public class LuaFunctionGenerator : MonoBehaviour
 
     public void GenerateFunction()
     {
+        WriteExecutorMethod(GenerateExecutorStrings());
+        
         WriteLuaMethod(GenerateLuaStrings());
         
-        WriteExecutorMethod(GenerateExecutorStrings());
+        
         Debug.Log("Generate");
     }
 
@@ -80,16 +82,16 @@ public class LuaFunctionGenerator : MonoBehaviour
 
         List<string> methodNameList = new List<string>();
 
+        using (StreamReader streamReader = new StreamReader(luaBasePath))
+        {
+            methodNameList.Add(streamReader.ReadToEnd());
+        }
+
         using (StreamReader streamReader = info.OpenText())
         {
             var libraryCurrentStr = streamReader.ReadToEnd();
             foreach (var method in methods)
             {
-                if (libraryCurrentStr.Contains(method.Name))
-                {
-                    continue;
-                }
-
                 string argumentName = GetLuaArgument(method);
 
                 string funcStr = null;
@@ -234,7 +236,7 @@ public class LuaFunctionGenerator : MonoBehaviour
     {
         Debug.Log(Application.persistentDataPath);
         
-        FileInfo fi = new FileInfo(tmpExecutorPath);
+        FileInfo fi = new FileInfo(luaPath);
 
         using ( StreamWriter writer = fi.AppendText())
         {
