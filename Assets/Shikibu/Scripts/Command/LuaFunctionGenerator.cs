@@ -22,7 +22,7 @@ public class LuaFunctionGenerator : MonoBehaviour
     
     private static string luaBasePath = textBasePath + "/BaseCustomLib.lua.txt";
     
-    private static string tmpLuaBasePath = textBasePath + "/TmpLuaCommand.lua.txt";
+    private static string tmpLuaPath = textBasePath + "/TmpLuaCommand.lua.txt";
 
     private static string tmpExecutorPath = textBasePath + "/TmpCommandExecutor.txt";
 
@@ -236,7 +236,12 @@ public class LuaFunctionGenerator : MonoBehaviour
     {
         Debug.Log(Application.persistentDataPath);
         
-        FileInfo fi = new FileInfo(luaPath);
+        using (var fileStream = new FileStream(tmpLuaPath, FileMode.Open))
+        {
+            fileStream.SetLength(0);
+        }
+        
+        FileInfo fi = new FileInfo(tmpLuaPath);
 
         using ( StreamWriter writer = fi.AppendText())
         {
@@ -246,6 +251,7 @@ public class LuaFunctionGenerator : MonoBehaviour
             }
         }
 
+        File.Copy(tmpLuaPath, luaPath, true);
     }
 
 
