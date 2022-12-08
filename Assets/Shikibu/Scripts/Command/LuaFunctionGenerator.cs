@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
@@ -23,7 +24,7 @@ public class LuaFunctionGenerator : MonoBehaviour
     
     private static string tmpLuaBasePath = textBasePath + "/TmpLuaCommand.lua.txt";
 
-    private static string tmpExecutorPath = textBasePath + "/TmpCommandExecutor.cs";
+    private static string tmpExecutorPath = textBasePath + "/TmpCommandExecutor.txt";
 
     private static string tab = "    ";
 
@@ -209,12 +210,15 @@ public class LuaFunctionGenerator : MonoBehaviour
                         
                         string methodName = shikibuMethod.Name ?? method.Name;
                         string methodType = type.ToString();
+                        
+                        string coroutineString = method.ReturnType == typeof(IEnumerator)? "yield return " : "";
+                        string returnType = method.ReturnType.ToString() == "System.Void" ? "void" : method.ReturnType.ToString();
 
                         string funcStr = $"[{attribute}]\n" +
-                                         $"public static {method.ReturnType} {methodName}({GetExecutorArgument(method)})\n" +
+                                         $"public static {returnType} {methodName}({GetExecutorArgument(method)})\n" +
                                          "{\n" +
                                          $"{tab}{methodType} command = ({methodType})_commandList.GetCommandOfType<{methodType}>();\n" +
-                                         $"{tab}command.{method.Name}({GetLuaArgument(method)});" +
+                                         $"{tab}{coroutineString}command.{method.Name}({GetLuaArgument(method)});\n" +
                                          "}\n";
 
                         stringBuilder.Append(funcStr);

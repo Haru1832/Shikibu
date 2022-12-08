@@ -1,50 +1,7 @@
 cs_coroutine.start(function()
 
-startStory()
+start()
 --ここから
 
-
-    changeBGAlpha("sh1")
-
-    displayCharacter("gomachan_normal",0,0)
-   
-    
-    wait(0.3)
-
-    text("ご来場ありがとうございます！","ガイド")
-
-    text("ここでは東京電機大学鳩山キャンパスの説明をさせていただこうと思います！","ガイド")
-    
-    Move("gomachan_normal", 600, 0)
-    
-    changeBGAlpha("csh2")
-    
-    --displayItem("Monsterball",0, 0)
-    
-    text("まず東京電機大学には二つのキャンパスがあります。","ガイド")
-    
-    changeBGAlpha("kita1")
-    
-     text("東京都にある北千住キャンパス","ガイド")
-     
-     changeBGAlpha("sh1")
-     
-     text("埼玉県にあるここ鳩山キャンパス","ガイド")
-     
-     text("まさに田舎対都会ですね...（泣）","ガイド")
-
-     text("とはいえ鳩山キャンパスには様々な魅力、特徴があるのでご紹介いたします！","ガイド")
-     
-     displayItem("shmitori",0, 50)
-    
-    text("まずは建物の構造について！","ガイド")
-    
-    text("建物は１～１２号館まであり、広大な敷地を存分に利用した配置となっています。","ガイド")
-    
-    
-    
--- ここまで
-    
-endStory()
 
 end)

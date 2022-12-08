@@ -13,6 +13,7 @@ public class WaitCommand : ICommand
     }
 
 
+    [ShikibuMethod]
     public IEnumerator Wait(float time)
     {
         yield return new WaitForSeconds(time);
