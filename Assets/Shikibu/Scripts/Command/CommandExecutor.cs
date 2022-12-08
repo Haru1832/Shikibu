@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using Command.CommandImpl;
 using UnityEngine;
@@ -14,91 +14,86 @@ namespace Command
         {
             _commandList = commandList;
         }
-
-        public static void ShowText(String text,String characterName = null)
-        {
-            var command = (ShowTextCommand)_commandList.GetCommandOfType<ShowTextCommand>();
-            
-            command.ShowText(text, characterName);
-        }
-
-        public static IEnumerator Wait(float time)
-        {
-            var command = (WaitCommand)_commandList.GetCommandOfType<WaitCommand>();
-
-            yield return command.Wait(time);
-        }
-
-        public static IEnumerator WaitClicked()
-        {
-            var command = (WaitClickedCommand)_commandList.GetCommandOfType<WaitClickedCommand>();
-            
-            yield return command.Wait();
-        }
-
-        public static void DisplayCharacter(String name, float x, float y)
-        {
-            var command = (DisplayCharacterCommand)_commandList.GetCommandOfType<DisplayCharacterCommand>();
-            
-            command.Display(name, x, y);
-        }
         
-        public static void DisplayItem(String name, float x, float y)
-        {
-            var command = (DisplayItemImageCommand)_commandList.GetCommandOfType<DisplayItemImageCommand>();
-            
-            command.Display(name, x, y);
-        }
 
-        public static void DeleteItem(String itemName)
-        {
-            var command = (DisplayItemImageCommand)_commandList.GetCommandOfType<DisplayItemImageCommand>();
-            
-            command.DeleteItemImage(itemName);
-        }
-        
-        public static void Start()
-        {
-            var command = (StartCommand)_commandList.GetCommandOfType<StartCommand>();
-            
-            command.Start();
-        }
-
-        public static void End()
-        {
-            var command = (EndCommand)_commandList.GetCommandOfType<EndCommand>();
-
-            command.End();
-        }
-        
-        public static IEnumerator WaitTextCompleted()
-        {
-            var command = (WaitTextCompletedCommand)_commandList.GetCommandOfType<WaitTextCompletedCommand>();
-
-            yield return command.WaitTextCompleted();
-            Debug.Log("WaitEnd");
-        }
-
-        public static void Move(String characterName, float x, float y)
-        {
-            var command = (MoveCommand)_commandList.GetCommandOfType<MoveCommand>();
-
-            command.Move(characterName, x, y);
-        }
-
-        public static void ChangeBackGroundAlpha(String backGroundName)
-        {
-            var command = (BackGroundCommand)_commandList.GetCommandOfType<BackGroundCommand>();
-            
-            command.ChangeBackGroundAlpha(backGroundName);
-        }
-
-        public static void DeleteCharacterImage(String characterName)
-        {
-            var command = (DisplayCharacterCommand)_commandList.GetCommandOfType<DisplayCharacterCommand>();
-            
-            command.DeleteCharacterImage(characterName);
-        }
+[LuaCallCSharp]
+public static void DisplayCharacter(System.String name,System.Single x,System.Single y)
+{
+    DisplayCharacterCommand command = (DisplayCharacterCommand)_commandList.GetCommandOfType<DisplayCharacterCommand>();
+    command.Display(name,x,y);
+}
+[LuaCallCSharp]
+public static void DeleteCharacterImage(System.String characterName)
+{
+    DisplayCharacterCommand command = (DisplayCharacterCommand)_commandList.GetCommandOfType<DisplayCharacterCommand>();
+    command.DeleteCharacterImage(characterName);
+}
+[LuaCallCSharp]
+public static void DisplayItem(System.String name,System.Single x,System.Single y)
+{
+    DisplayItemImageCommand command = (DisplayItemImageCommand)_commandList.GetCommandOfType<DisplayItemImageCommand>();
+    command.Display(name,x,y);
+}
+[LuaCallCSharp]
+public static void DeleteItemImage(System.String itemName)
+{
+    DisplayItemImageCommand command = (DisplayItemImageCommand)_commandList.GetCommandOfType<DisplayItemImageCommand>();
+    command.DeleteItemImage(itemName);
+}
+[LuaCallCSharp]
+public static void ShowText(System.String _talkText,System.String characterName)
+{
+    ShowTextCommand command = (ShowTextCommand)_commandList.GetCommandOfType<ShowTextCommand>();
+    command.ShowText(_talkText,characterName);
+}
+[LuaCallCSharp]
+public static System.Collections.IEnumerator Wait()
+{
+    WaitClickedCommand command = (WaitClickedCommand)_commandList.GetCommandOfType<WaitClickedCommand>();
+    yield return command.Wait();
+}
+[LuaCallCSharp]
+public static System.Collections.IEnumerator Wait(System.Single time)
+{
+    WaitCommand command = (WaitCommand)_commandList.GetCommandOfType<WaitCommand>();
+    yield return command.Wait(time);
+}
+[LuaCallCSharp]
+public static void ChangeBackGroundAlpha(System.String backGroundName)
+{
+    Command.CommandImpl.BackGroundCommand command = (Command.CommandImpl.BackGroundCommand)_commandList.GetCommandOfType<Command.CommandImpl.BackGroundCommand>();
+    command.ChangeBackGroundAlpha(backGroundName);
+}
+[LuaCallCSharp]
+public static void ChangeCharacterImage(System.String characterName,System.String changeCharacterName)
+{
+    Command.CommandImpl.ChangeCharacterImageCommand command = (Command.CommandImpl.ChangeCharacterImageCommand)_commandList.GetCommandOfType<Command.CommandImpl.ChangeCharacterImageCommand>();
+    command.ChangeCharacterImage(characterName,changeCharacterName);
+}
+[LuaCallCSharp]
+public static void End()
+{
+    Command.CommandImpl.EndCommand command = (Command.CommandImpl.EndCommand)_commandList.GetCommandOfType<Command.CommandImpl.EndCommand>();
+    command.End();
+}
+[LuaCallCSharp]
+public static void Move(System.String characterName,System.Single x,System.Single y)
+{
+    Command.CommandImpl.MoveCommand command = (Command.CommandImpl.MoveCommand)_commandList.GetCommandOfType<Command.CommandImpl.MoveCommand>();
+    command.Move(characterName,x,y);
+}
+[LuaCallCSharp]
+public static void Start()
+{
+    Command.CommandImpl.StartCommand command = (Command.CommandImpl.StartCommand)_commandList.GetCommandOfType<Command.CommandImpl.StartCommand>();
+    command.Start();
+}
+[LuaCallCSharp]
+public static System.Collections.IEnumerator WaitTextCompleted()
+{
+    Command.CommandImpl.WaitTextCompletedCommand command = (Command.CommandImpl.WaitTextCompletedCommand)_commandList.GetCommandOfType<Command.CommandImpl.WaitTextCompletedCommand>();
+    yield return command.WaitTextCompleted();
+}
 
         public static int EditLineNum = 18;
     }

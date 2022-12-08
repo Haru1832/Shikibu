@@ -6,3 +6,59 @@ function Text(text, characterName)
     command.ShowText(text, characterName)
     WaitTextCompleted()
 end
+function Initialize(commandList)
+    command.Initialize(commandList)
+end
+
+function DisplayCharacter(name,x,y)
+    command.DisplayCharacter(name,x,y)
+end
+
+function DeleteCharacterImage(characterName)
+    command.DeleteCharacterImage(characterName)
+end
+
+function DisplayItem(name,x,y)
+    command.DisplayItem(name,x,y)
+end
+
+function DeleteItemImage(itemName)
+    command.DeleteItemImage(itemName)
+end
+
+function ShowText(_talkText,characterName)
+    command.ShowText(_talkText,characterName)
+end
+
+function Wait()
+    coroutine.yield(command.Wait())
+end
+
+function Wait(time)
+    coroutine.yield(command.Wait(time))
+end
+
+function ChangeBackGroundAlpha(backGroundName)
+    command.ChangeBackGroundAlpha(backGroundName)
+end
+
+function ChangeCharacterImage(characterName,changeCharacterName)
+    command.ChangeCharacterImage(characterName,changeCharacterName)
+end
+
+function End()
+    command.End()
+end
+
+function Move(characterName,x,y)
+    command.Move(characterName,x,y)
+end
+
+function Start()
+    command.Start()
+end
+
+function WaitTextCompleted()
+    coroutine.yield(command.WaitTextCompleted())
+end
+
