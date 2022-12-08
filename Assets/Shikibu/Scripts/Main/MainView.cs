@@ -21,7 +21,7 @@ namespace Main
             _luaenv.Global.Set("csStartCoroutine", (Func<IEnumerator, Coroutine>)InvokeStartCoroutine);
             _luaenv.Global.Set("csStopCoroutine", (Action<Coroutine>)InvokeStopCoroutine);
 
-            var libText = GetScenario("lib"); //libの実行
+            var libText = GetScenario("CustomLib"); //libの実行
             _luaenv.DoString(libText);
         
             // 文字列で定義したLuaスクリプトを実行
