@@ -12,6 +12,11 @@ public class CommandManager : MonoBehaviour
     
     private void Awake()
     {
+        SetUpCommand();
+    }
+
+    private void SetUpCommand()
+    {
         _advCommandList = new AdvCommandList(UIObjectManager);
         CommandExecutor.Initialize(_advCommandList);
     }

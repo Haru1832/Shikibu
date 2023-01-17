@@ -26,7 +26,7 @@ public class ShowTextCommand : BaseShikibuCommand
     }
     
     [ShikibuMethod]
-    public void ShowText(String _talkText, String characterName = null)
+    public void ShowText(String talkText, String characterName = null)
     {
         if (characterName != null)
         {
@@ -35,10 +35,10 @@ public class ShowTextCommand : BaseShikibuCommand
         _tweenManager.DisposeTextTween();
         _mainText.text = "";
     
-        float textLength = _talkText.Length;
+        float textLength = talkText.Length;
         
     
-        _tween = _mainText.DOText(_talkText, textLength / textSpeed).SetEase(Ease.Linear).OnComplete((() => _tweenManager.DisposeTextTween()));
+        _tween = _mainText.DOText(talkText, textLength / textSpeed).SetEase(Ease.Linear).OnComplete((() => _tweenManager.DisposeTextTween()));
         _tweenManager.RegisterTextTween(_tween);
     }
 
